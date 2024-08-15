@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "C0D4DFFD-67C9-4A43-8FBB-6A7456FFDC4F",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:NetworkKit.xcodeproj",
+        "identifier" : "65E132172C6CEF84000D70C2",
+        "name" : "NetworkKitTests"
+      }
+    }
+  ],
+  "version" : 1
+}
