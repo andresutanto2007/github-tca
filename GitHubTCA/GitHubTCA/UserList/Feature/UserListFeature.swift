@@ -21,6 +21,7 @@ struct UserListFeature {
     
     @Reducer(state: .equatable)
     enum Destination {
+        case userRepository(UserRepositoryFeature)
         case errorAlert(CommonAlert.ErrorFeature)
     }
     
@@ -53,8 +54,9 @@ struct UserListFeature {
                     return fetchUserIfNecessary(state: &state)
                 }
                 return .none
-            case .onTapUser:
-                // TODO: Navigation to repository
+            case let .onTapUser(user):
+                let userRepositoryState = UserRepositoryFeature.State(username: user.name)
+                state.destination = .userRepository(userRepositoryState)
                 return .none
             case let .onReceivedResponse(responseType):
                 return onReceivedResponse(responseType: responseType, state: &state)

@@ -49,6 +49,11 @@ struct UserListView: View {
                 store.send(.didLoad)
             }
             .navigationTitle("user_list_title")
+            .sheet(item: $store.scope(state: \.destination?.userRepository, action: \.destination.userRepository)) { store in
+                NavigationStackWrapper {
+                    UserRepositoryView(store: store)
+                }
+            }
             .alert($store.scope(state: \.destination?.errorAlert, action: \.destination.errorAlert))
         }
     }

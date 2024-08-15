@@ -302,4 +302,35 @@ final class UserListFeatureTests: XCTestCase {
             $0.destination = .errorAlert(CommonAlert.ErrorFeature.buildAlert(error: NetworkKitError.serverError))
         }
     }
+    
+    @MainActor
+    func testOnTapUser() async {
+        let mockResponse: NetworkResponse<[GitHubUser]> = try! MockHelper.buildNetworkResponse(
+            with: MockGetUsers.successIsLastPage
+        )
+        
+        let store = TestStore(initialState: UserListFeature.State()) {
+            UserListFeature()
+        } withDependencies: {
+            $0.userListClient.getUsers = { _ in mockResponse }
+            $0.uuid = .incrementing
+        }
+        
+        await store.send(.didLoad) {
+            $0.userListUrl = "https://api.github.com/users"
+            $0.isLoading = true
+        }
+        
+        await store.receive(\.onReceivedResponse) {
+            $0.isLoading = false
+            $0.userListUrl = nil
+            $0.users = mockResponse.body.enumerated().compactMap({ (index, value) in
+                return UserView.Model(id: UUID(index), name: value.login!, avatarURL: URL(string: value.avatarUrl!)!)
+            })
+        }
+        
+        await store.send(.onTapUser(store.state.users[4])) {
+            $0.destination = .userRepository(UserRepositoryFeature.State(username: "ezmobius"))
+        }
+    }
 }
