@@ -17,6 +17,7 @@ struct UserRepositoryFeature {
         var userDetail: UserDetailFeature.State
         var repositoryList: RepositoryListFeature.State
         var searchedText: String = ""
+        @Presents var webView: CommonWebViewFeature.State?
         
         init(username: String) {
             self.username = username
@@ -29,6 +30,7 @@ struct UserRepositoryFeature {
         case userDetail(UserDetailFeature.Action)
         case repositoryList(RepositoryListFeature.Action)
         case searchedText(String)
+        case webView(PresentationAction<CommonWebViewFeature.Action>)
     }
     
     var body: some ReducerOf<Self> {
@@ -41,7 +43,10 @@ struct UserRepositoryFeature {
         Reduce { state, action in
             switch action {
             case let .repositoryList(.onTapRepository(repository)):
-                // TODO: Open webview
+                guard let htmlUrl = repository.htmlUrl else {
+                    return .none
+                }
+                state.webView = CommonWebViewFeature.State(url: htmlUrl, title: repository.name)
                 return .none
             case let .searchedText(text):
                 state.searchedText = text
@@ -49,6 +54,9 @@ struct UserRepositoryFeature {
             default:
                 return .none
             }
+        }
+        .ifLet(\.$webView, action: \.webView) {
+            CommonWebViewFeature()
         }
     }
 }

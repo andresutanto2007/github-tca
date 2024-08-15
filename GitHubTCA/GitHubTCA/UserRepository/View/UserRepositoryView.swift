@@ -48,6 +48,12 @@ struct UserRepositoryView: View {
                     .accessibilityIdentifier(AccessibilityElement.toolbarClose.id)
                 }
             }
+            .disabled(store.webView != nil)
+            .sheet(item: $store.scope(state: \.webView, action: \.webView)) { webViewStore in
+                NavigationStackWrapper {
+                    CommonWebView(store: webViewStore)
+                }
+            }
         }
     }
 }
