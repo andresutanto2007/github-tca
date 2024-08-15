@@ -31,6 +31,16 @@
         }
       }
     },
+    "toolbar_close" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
     "user_detail_followers" : {
       "localizations" : {
         "en" : {
