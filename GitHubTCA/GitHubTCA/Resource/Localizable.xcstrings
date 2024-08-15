@@ -21,6 +21,16 @@
         }
       }
     },
+    "repository_list_empty" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repositories not found"
+          }
+        }
+      }
+    },
     "user_detail_followers" : {
       "localizations" : {
         "en" : {
