@@ -5,13 +5,22 @@
 //  Created by Andre on 2024/08/15.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 @main
 struct GitHubTCAApp: App {
+    private let store = Store(initialState: UserListFeature.State()) {
+        UserListFeature()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            EmptyView()
+            if !isTesting {
+                NavigationStackWrapper {
+                    UserListView(store: store)
+                }
+            }
         }
     }
 }
