@@ -21,6 +21,26 @@
         }
       }
     },
+    "user_detail_followers" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "followers"
+          }
+        }
+      }
+    },
+    "user_detail_following" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "following"
+          }
+        }
+      }
+    },
     "user_list_title" : {
       "localizations" : {
         "en" : {
