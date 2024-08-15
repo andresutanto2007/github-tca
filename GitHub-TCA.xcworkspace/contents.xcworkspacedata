@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:GitHubTCA/GitHubTCA.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:NetworkKit/NetworkKit.xcodeproj">
    </FileRef>
 </Workspace>

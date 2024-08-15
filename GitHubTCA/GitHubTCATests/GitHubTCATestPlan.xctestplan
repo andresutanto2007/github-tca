@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "F0533A8E-094C-4C8D-8B82-6AD8BE44749C",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:GitHubTCA.xcodeproj",
+      "identifier" : "650E48B22C6D938100416935",
+      "name" : "GitHubTCA"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:GitHubTCA.xcodeproj",
+        "identifier" : "650E48C72C6D93F200416935",
+        "name" : "GitHubTCATests"
+      }
+    }
+  ],
+  "version" : 1
+}
